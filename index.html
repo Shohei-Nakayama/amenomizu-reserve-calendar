@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+      <div class="calendar-container">
+        <h1>２０２５ -  １月</h1>
+        <table class="calendar">
+          <tr>
+            <th>SUN</th>
+            <th>MON</th>
+            <th>TUE</th>
+            <th>WED</th>
+            <th>THU</th>
+            <th>FRI</th>
+            <th>SAT</th>
+          </tr>
+          <tr class="day">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>1</td>
+            <td>2</td>
+            <td :class="{	selected:selectedDay === 3}" class="circle1" @click="selectedDate(3)">3</td>
+            <td>4</td>
+          </tr>
+          <tr class="day">
+            <td :class="{ selected:selectedDay === 5}" class=circle2 @click="selectedDate(5)">5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+          </tr>
+          <tr class="day">
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+            <td>16</td>
+            <td>17</td>
+            <td>18</td>
+          </tr>
+          <tr class="day">
+            <td>19</td>
+            <td>20</td>
+            <td>21</td>
+            <td>22</td>
+            <td>23</td>
+            <td>24</td>
+            <td>25</td>
+          </tr>
+          <tr class="day">
+            <td>26</td>
+            <td>27</td>
+            <td>28</td>
+            <td>29</td>
+            <td>30</td>
+            <td>31</td>
+            <td></td>
+          </tr>
+        </table>
+      <br><br><br>
+    <div class = "confirm">予約日時は<br>
+      <P>{{ message }}<br></P>
+      で、よろしいですか？<br><br>
+      <button>確認画面へ</button><br>
+    </div>
+
+  </div>
+</div>
+
+<script>
+Vue.createApp({
+  data(){
+    return{
+      selectedDay: null, //選択された日付
+      message: ''       //表示するメッセージ
+    };
+  },
+
+methods: {
+  // 予約可能日をクリック時に、その日時を表示
+  selectedDate(day){
+    this.selectedDay = day;
+    this.message = `１月${day}日`;
+  }
+}
+}).mount('#app');
+</script>
+</body>
+</html>

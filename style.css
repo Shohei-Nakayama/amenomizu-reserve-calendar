@@ -35,3 +35,30 @@ calendar-container {
   .day *:last-child {
     color: #6fb5ff;
   }
+
+  .confirm{
+    text-align: center;
+  }
+
+  .button{
+    width:25px;
+    box-shadow: 2px 2px 5px gray;
+  }
+
+  .circle1{
+    background:rgba(29, 235, 29, 0.823);
+    border-radius: 50%;
+    width: 25px;
+    box-shadow: 2px 2px 5px gray;
+  }
+
+  .circle2{
+    background:rgba(246, 176, 101, 0.823);
+    border-radius: 50%;
+    width: 25px;
+      box-shadow: 2px 2px 5px gray;
+    }
+
+    .selectedDay{
+      border-bottom: #ff6f6f;
+    }
