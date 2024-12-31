@@ -67,52 +67,43 @@
             <td></td>
           </tr>
         </table>
+      </div>
         
-      <div class="timebox-container">
-        <div class="timebox">
-          <p>８：００</p>
+      <div class ="timebox-container">
+        <!-- 時刻が選択されると表示される -->
+        <div v-if="selectedTimes.length > 0">
+          <div class="timebox" v-for="time in selectedTimes" :key="time" @click="selectTime(time)">
+            <p>{{time}}</p> 
+          </div>
         </div>
-
-        <div class="timebox">
-          <p>１０：００</p>
-        </div>
-
-        <div class="timebox">
-          <p>１２：００</p>
-        </div>
-
-        <div class="timebox">
-          <p>１４：００</p>
-        </div>
-
-        <div class="timebox">
-          <p>１５：００</p>
-        </div>
-
-        <div class="timebox">
-          <p>１６：００</p>
-        </div>
-
-        <div class="timebox">
-          <p>１９：００</p>
+        <div v-else>
+          <P>※カレンダーから日付を選択してください</P>
         </div>
       </div>
-<br><br><br>
-    <div class = "confirm">予約日時は<br>
-      <P>{{ message }}<br></P>
+      <br><br>
+
+<!-- 時刻が選ばれた後に表示されるconfirmセクション -->
+    <div class = "confirm" v-if="selectedTime">
+      予約日時は<br>
+      <P>{{ message }}<br>{{selectedTime}}</P><br>
       で、よろしいですか？<br><br>
       <button>確認画面へ</button><br>
     </div>
 
   </div>
-</div>
 
 <script>
 Vue.createApp({
   data(){
     return{
       selectedDay: null, //選択された日付
-      message: ''       //表示するメッセージ
+      selectedTime:'', //選択された時刻
+      times:{
+        3:['8:00','10:00','12:00','14:00','16:00','18:00'],
+        5:['19:00']
+      },
+      selectedTimes:[],
+      message:'', //メッセージ
     };
   },
 
@@ -120,9 +111,17 @@ methods: {
   // 予約可能日をクリック時に、その日時を表示
   selectedDate(day){
     this.selectedDay = day;
-    this.message = `１月${day}日`;
+    this.selectedTimes = this.times[day]||[]; //該当する時間を設定。
+    this.selectedTime =''; //時刻をリセット
+    this.message = `１月${day}日`;　//メッセージを設定
+  },
+
+//時刻をクリックした時の処理
+  selectTime(time){
+  this.selectedTime = time; //時刻を選択
   }
 }
+
 }).mount('#app');
 </script>
 </body>
