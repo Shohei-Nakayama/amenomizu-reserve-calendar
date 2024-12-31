@@ -1,0 +1,27 @@
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+  // EmailJSの初期化
+  emailjs.init("service_2hb2qpf");
+
+  // メール送信処理
+  function sendEmail() {
+    // 日付と時刻のデータを取得
+    const day = this.selectedDay;
+    const time = this.selectedTime;
+    const message = `予約日時: １月${day}日 ${time}`;
+
+    // メール送信
+    emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+      to_email: "recipient@example.com",  // 宛先のメールアドレス
+      message: message  // メールの内容
+    })
+    .then(function(response) {
+      console.log('送信されました。
+      <br>こちらから改めてご連絡をさしあげますので、しばらくお待ちください。', response);
+    }, function(error) {
+      console.error('何らかの理由で送信に失敗しました。<br>
+      再度送信するか、もしくはメール：s.nakayama.dcm5@gmailまで<br>
+      直接お問い合わせください。', error);
+    });
+  }
+</script>
